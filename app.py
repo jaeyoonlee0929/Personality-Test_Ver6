@@ -7,8 +7,8 @@ import time
 import json
 
 # --- UI 설정 ---
-st.set_page_config(page_title="HR 리포트 자동화 통합 툴", layout="wide")
-st.title("📊 HR 리포트 자동화 통합 서비스")
+st.set_page_config(page_title="성격검사 자동화", layout="wide")
+st.title("📊 성격검사 자동화")
 st.info("시트 URL을 입력하고 분석 단계를 선택하세요. 결과는 해당 시트에 실시간으로 업데이트됩니다.")
 
 # --- API & Google Auth 설정 (Secrets 이용) ---
@@ -1321,8 +1321,6 @@ def main():
                     r1 = call_gpt(inp, P_PROMPT_1); ws.update_cell(idx, len(headers)+1, r1)
                     r2 = call_gpt(r1, P_PROMPT_2); ws.update_cell(idx, len(headers)+2, r2)
                     r3 = call_gpt(r2, P_PROMPT_3); ws.update_cell(idx, len(headers)+3, r3)
-                    r4 = call_gpt(r3, P_PROMPT_4); ws.update_cell(idx, len(headers)+4, r4)
-                    r5 = call_gpt(r4, P_PROMPT_5); ws.update_cell(idx, len(headers)+5, r5)
                     bar.progress((i+1)/len(df))
                 st.success("성격 분석 작업이 성공적으로 완료되었습니다!")
 
@@ -1377,4 +1375,5 @@ def main():
             st.error(f"실행 중 오류가 발생했습니다: {e}")
 
 if __name__ == "__main__":
+
     main()
